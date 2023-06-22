@@ -1,17 +1,10 @@
 [
     {
-        "content": "Guybrush"
+        "text": "HTML",
+        "doneTask": false
     },
     {
-        "content": "Francesca"
-    },
-    {
-        "content": "nome temp"
-    },
-    {
-        "content": "prova"
-    },
-    {
-        "content": "altro"
+        "text": "vola",
+        "doneTask": "false"
     }
 ]
