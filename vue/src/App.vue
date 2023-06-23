@@ -20,23 +20,43 @@ export default {
       };
 
       axios.post(url, data, headers)
-        .then(response => {
-          this.tasks = response.data;
+        .then(res => {
+          this.tasks = res.data;
 
           this.newTask.text = "";
           this.newTask.doneTask = false;
+
+          console.log(this.tasks);
+
         })
         .catch(error => console.error("error", error));
     },
+
     doneUndone(index) {
       this.tasks[index].doneTask = !this.tasks[index].doneTask;
+    },
+
+    deleteTask(index) {
+
+      const url = 'http://localhost/PHP_PROJECTS/php-todo-list-json/php/deleteTask.php';
+      const data = { "index": index };
+      const headers = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+
+      axios.post(url, data, headers)
+        .then(res => {
+          this.tasks = res.data;
+          console.log(this.tasks);
+        })
     }
   },
   mounted() {
 
     axios.get('http://localhost/PHP_PROJECTS/php-todo-list-json/php/index.php')
-      .then(response => {
-        this.tasks = response.data;
+      .then(res => {
+        this.tasks = res.data;
+        console.log(res.data);
       });
   }
 }
@@ -50,14 +70,14 @@ export default {
     <div class="taskContainer">
       <ul>
         <!-- Task element -->
-        <li class="task" v-for="(task, idx) in tasks" :class="(task.doneTask === true) ? 'doneTask' : ''"
+        <li class="task" v-for="(task, idx) in tasks" :key="idx" :class="(task.doneTask === true) ? 'doneTask' : ''"
           @click.prevent="doneUndone(idx)">
 
           <!-- Task text (from input) -->
           <span>{{ task.text }}</span>
 
           <!-- "x" delete button -->
-          <button>
+          <button @click="deleteTask(idx)">
             <i class="fa-solid fa-xmark"></i>
           </button>
 

@@ -19,6 +19,9 @@ button {
 .doneTask {
     text-decoration: line-through;
     background-color: beige;
+    i {
+        text-decoration: none;
+    }
 }
 
 /***************

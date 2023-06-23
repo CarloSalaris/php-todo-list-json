@@ -1,10 +1,1 @@
-[
-    {
-        "text": "HTML",
-        "doneTask": false
-    },
-    {
-        "text": "vola",
-        "doneTask": "false"
-    }
-]
+[{"text":"Responsive design","doneTask":false},{"text":"PHP","doneTask":false},{"text":"html","doneTask":"false"},{"text":"Laravel","doneTask":"false"}]
