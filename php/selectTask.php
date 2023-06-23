@@ -11,10 +11,11 @@ $index = $_POST['index'];
 
 //decode
 $dataStr = file_get_contents($file);
-$tasks = json_decode($dataStr);
+$tasks = json_decode($dataStr, true);
 
 //Action
-array_splice($tasks, $index, 1);
+ $tasks[$index]["doneTask"] = !$tasks[$index]["doneTask"];
+
 
 //encode
 $dataStr = json_encode($tasks);

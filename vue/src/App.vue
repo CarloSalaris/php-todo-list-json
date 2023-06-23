@@ -33,7 +33,18 @@ export default {
     },
 
     doneUndone(index) {
-      this.tasks[index].doneTask = !this.tasks[index].doneTask;
+
+      const url = 'http://localhost/PHP_PROJECTS/php-todo-list-json/php/selectTask.php';
+      const data = { "index": index };
+      const headers = {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      };
+
+      axios.post(url, data, headers)
+        .then(res => {
+          this.tasks = res.data;
+          console.log(this.tasks);
+        })
     },
 
     deleteTask(index) {
