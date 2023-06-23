@@ -78,7 +78,7 @@ export default {
 
     <div class="container p-3">
       <div class="row justify-content-center">
-        <div class="col-lg-6">
+        <div class="col-lg-6 col-xl-4">
 
           <!-- TITOLO -->
           <h1 class="text-center display-1 text-light-emphasis">Todo List</h1>
@@ -94,8 +94,8 @@ export default {
               </span>
 
               <!-- Delete button -->
-              <button @click="deleteTask(idx)">
-                <i class="fa-solid fa-xmark"></i>
+              <button @click="deleteTask(idx)" type="button" class="my-2 btn btn-danger">
+                <i class="fa-solid fa-trash"></i>
               </button>
             </li>
 
