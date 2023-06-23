@@ -81,13 +81,13 @@ export default {
     <div class="taskContainer">
       <ul>
         <!-- Task element -->
-        <li class="task" v-for="(task, idx) in tasks" :key="idx" :class="(task.doneTask === true) ? 'doneTask' : ''"
-          @click.prevent="doneUndone(idx)">
+        <li class="task" v-for="(task, idx) in tasks" :key="idx">
 
           <!-- Task text (from input) -->
-          <span>{{ task.text }}</span>
+          <span @click.prevent="doneUndone(idx)" :class="(task.doneTask == 'true') ? 'doneTask' : ''">{{ task.text
+          }}</span>
 
-          <!-- "x" delete button -->
+          <!-- " x" delete button -->
           <button @click="deleteTask(idx)">
             <i class="fa-solid fa-xmark"></i>
           </button>

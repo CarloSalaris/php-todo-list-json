@@ -14,7 +14,12 @@ $dataStr = file_get_contents($file);
 $tasks = json_decode($dataStr, true);
 
 //Action
- $tasks[$index]["doneTask"] = !$tasks[$index]["doneTask"];
+if ($tasks[$index]["doneTask"] == "true") {
+    $tasks[$index]["doneTask"] = "false";
+}else {
+    $tasks[$index]["doneTask"] = "true";
+};
+
 
 
 //encode

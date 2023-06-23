@@ -7,8 +7,10 @@ header('Content-Type: application/json');
 $file = "data.json";
 
 $newTask = $_POST;
+
 $dataStr = file_get_contents($file);
 $data = json_decode($dataStr);
+
 $data[] = $newTask;
 
 $encData = json_encode($data);
