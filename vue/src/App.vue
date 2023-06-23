@@ -74,42 +74,58 @@ export default {
 </script>
 
 <template>
-  <div class="container p-3">
-    <h1 class="text-center">Todo List</h1>
+  <div class="wrap">
 
-    <!-- OUTPUT TASK -->
-    <div class="taskContainer">
-      <ul>
-        <!-- Task element -->
-        <li class="task" v-for="(task, idx) in tasks" :key="idx">
+    <div class="container p-3">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
 
-          <!-- Task text (from input) -->
-          <span @click.prevent="doneUndone(idx)" :class="(task.doneTask == 'true') ? 'doneTask' : ''">{{ task.text
-          }}</span>
+          <!-- TITOLO -->
+          <h1 class="text-center display-1 text-light-emphasis">Todo List</h1>
 
-          <!-- " x" delete button -->
-          <button @click="deleteTask(idx)">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
+          <!-- LISTA -->
+          <ul>
+            <!-- Task element (in v-for) -->
+            <li class="task" v-for="(task, idx) in tasks" :key="idx">
 
-        </li>
+              <!-- Task text (from input) -->
+              <span @click.prevent="doneUndone(idx)" :class="(task.doneTask == 'true') ? 'doneTask' : ''">
+                {{ task.text }}
+              </span>
 
-        <!-- Empty task list message (hidden) -->
-        <h2 v-if="tasks.length === 0" class="emptyTasks">Non ci sono task al momento...</h2>
-      </ul>
+              <!-- Delete button -->
+              <button @click="deleteTask(idx)">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
+            </li>
+
+            <!-- HIDDEN MESSAGE -->
+            <!-- Empty task list message (hidden) -->
+            <h2 v-if="tasks.length === 0" class="emptyTasks">Non ci sono task al momento...</h2>
+
+          </ul>
+
+          <!-- INPUT -->
+          <form @submit.prevent="onSubmit" class="input-group mb-3 px-0">
+            <input type="text" class="form-control  py-2" placeholder="Inserisci elemento..."
+              aria-label="Recipient's username" aria-describedby="button-addon2" v-model="newTask.text">
+            <button @keyup.enter="onSubmit" class="btn btn-outline-warning py" type="submit" id="button-addon2">
+              Inserisci
+            </button>
+          </form>
+        </div>
+      </div>
+
     </div>
-
-    <form @submit.prevent="onSubmit" class="input-group mb-3">
-      <input type="text" class="form-control" placeholder="Inserisci elemento..." aria-label="Recipient's username"
-        aria-describedby="button-addon2" v-model="newTask.text">
-      <button class="btn btn-outline-secondary" type="submit" id="button-addon2"
-        @keyup.enter="onSubmit">Inserisci</button>
-    </form>
-
-
   </div>
 </template>
 
 <style lang="scss">
 @use './styles/general.scss';
+
+.wrap {
+  width: 100vw;
+  height: 100vh;
+  background-color: #001632;
+}
 </style>
