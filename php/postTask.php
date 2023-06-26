@@ -6,17 +6,22 @@ header('Content-Type: application/json');
 
 $file = "data.json";
 
+//receive
 $newTask = $_POST;
+$newTask["doneTask"] = false;
 
+//decode
 $dataStr = file_get_contents($file);
 $data = json_decode($dataStr);
 
-$data[] = $newTask;
+//Action
+$data[] = $newTask; //Push newTask to $data Array
 
+//encode
 $encData = json_encode($data);
 
+//save + send
 file_put_contents($file, $encData);
-
 echo $encData;
 
 ?>

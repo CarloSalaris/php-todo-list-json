@@ -5,8 +5,7 @@ export default {
     return {
       tasks: [],
       newTask: {
-        text: "",
-        doneTask: false
+        text: ""
       }
     }
   },
@@ -24,7 +23,6 @@ export default {
           this.tasks = res.data;
 
           this.newTask.text = "";
-          this.newTask.doneTask = false;
 
           console.log(this.tasks);
 
@@ -32,9 +30,9 @@ export default {
         .catch(error => console.error("error", error));
     },
 
-    doneUndone(index) {
+    toggleTask(index) {
 
-      const url = 'http://localhost/PHP_PROJECTS/php-todo-list-json/php/selectTask.php';
+      const url = 'http://localhost/PHP_PROJECTS/php-todo-list-json/php/toggleTask.php';
       const data = { "index": index };
       const headers = {
         headers: { 'Content-Type': 'multipart/form-data' }
@@ -89,7 +87,7 @@ export default {
             <li class="task" v-for="(task, idx) in tasks" :key="idx">
 
               <!-- Task text (from input) -->
-              <span @click.prevent="doneUndone(idx)" :class="(task.doneTask == 'true') ? 'doneTask' : ''">
+              <span @click.prevent="toggleTask(idx)" :class="(task.doneTask == true) ? 'doneTask' : ''">
                 {{ task.text }}
               </span>
 
