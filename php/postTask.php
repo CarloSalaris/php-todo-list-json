@@ -15,7 +15,10 @@ $dataStr = file_get_contents($file);
 $data = json_decode($dataStr);
 
 //Action
-$data[] = $newTask; //Push newTask to $data Array
+if ($newTask["text"] !== "") {
+    $data[] = $newTask; //Push newTask to $data Array
+}
+
 
 //encode
 $encData = json_encode($data);
